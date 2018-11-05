@@ -1,0 +1,57 @@
+<h3>Crear nueva ave</h3>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div [hidden]="submitted" class="col-md-4" >
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Código</label>
+                <input type="number" class="form-control" id="cdave" required [(ngModel)]="ave.cdave" name="cdave"
+                    [ngModel]="ave.cdave" minlength="1" maxlength="5" #codigoAve="ngModel">
+                <div *ngIf="codigoAve.errors?.minlength">
+                     El código debe tener por lo menos 1 caracter
+                </div>
+                <div *ngIf="codigoAve.errors?.maxlength">
+                     El código debe tener máximo 5 caracteres
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Nombre común</label>
+                <input type="text" class="form-control" id="dsnombre_comun" required [(ngModel)]="ave.dsnombre_comun" name="dsnombre_comun">
+            </div>
+
+            <div class="form-group">
+                <label for="dsnombre_cientifico">Nombre científico</label>
+                <input type="text" class="form-control" id="dsnombre_cientifico" required [(ngModel)]="ave.dsnombre_cientifico" name="dsnombre_cientifico">
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Código país" [(ngModel)]="pais.cdpais" id="cdpais" name="cdpais">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Nombre país" [(ngModel)]="pais.dsnombre_pais" id="dsnombre_pais" name="dsnombre_pais">
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 65px;">
+                <!-- <input type="text" class="form-control" placeholder="Zona" id="cdzona" required [(ngModel)]="zona.cdzona" name="cdzona"> -->
+                <select class="form-control form-control-sm" placeholder="Zona" id="cdzona" required [(ngModel)]="zona.cdzona" name="cdzona">
+                    <option *ngFor="let zona of zonas" [value]="zona">{{zona.cdZona}} - {{zona.dsNombre}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+
+
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+
+    <div [hidden]="!submitted">
+        <h4>Guardado con éxito!</h4>
+        <button class="btn btn-success" (click)="newAve()">Agregar</button>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<h3>Buscar por ave y zona</h3>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div [hidden]="submitted" class="col-md-4" >
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="lastname">Nombre ave</label>
+              <input type="text" class="form-control" id="dsnombre_ave" required [(ngModel)]="params.dsnombre_ave" name="dsnombre_ave">
+            </div>
+
+            <div class="form-group" style="">
+                <select class="form-control form-control-sm" placeholder="Zona" id="cdzona" required [(ngModel)]="params.cdzona" name="cdzona">
+                    <option *ngFor="let zona of zonas" [value]="zona.cdZona">{{zona.cdZona}} - {{zona.dsNombre}}</option>
+                </select>
+            </div>
+
+            <div class="btn-group">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+
+    <ul>
+      <li *ngFor="let ave of aves">
+        <h4>{{ave.id}} - {{ave.dsnombre_comun}} {{ave.pais.zona.dsnombre_zona}}</h4>
+      </li>
+    </ul>
+
+</div>
